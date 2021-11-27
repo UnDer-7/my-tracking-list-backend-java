@@ -16,6 +16,9 @@
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
     <quarkus.platform.version>2.5.0.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+
+    <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+    <lombok.version>1.18.22</lombok.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -29,6 +32,17 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${org.mapstruct.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-arc</artifactId>
@@ -86,6 +100,23 @@
         <version>${compiler-plugin.version}</version>
         <configuration>
           <parameters>${maven.compiler.parameters}</parameters>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${org.mapstruct.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+            <dependency>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok-mapstruct-binding</artifactId>
+              <version>0.2.0</version>
+            </dependency>
+          </annotationProcessorPaths>
         </configuration>
       </plugin>
       <plugin>
