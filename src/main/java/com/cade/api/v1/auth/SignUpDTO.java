@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SignUpDTO {
-    private String email;
-    private String name;
-    private String givenName;
-    private String familyName;
+    private String token;
+//    private String email;
+//    private String name;
+//    private String givenName;
+//    private String familyName;
 }
