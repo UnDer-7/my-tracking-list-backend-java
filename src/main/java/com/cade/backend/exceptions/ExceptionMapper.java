@@ -1,13 +1,12 @@
-package com.cade.backend.handlers;
+package com.cade.backend.exceptions;
 
 import com.cade.core.exceptions.CoreExceptions;
 
 import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class ExceptionHandler implements ExceptionMapper<CoreExceptions> {
+public class ExceptionMapper implements javax.ws.rs.ext.ExceptionMapper<CoreExceptions> {
 
     @Override
     public Response toResponse(final CoreExceptions exception) {

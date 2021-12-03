@@ -15,4 +15,5 @@ public class ResponseUserDTO {
     private String name;
     private String givenName;
     private String familyName;
+    private String pictureUrl;
 }

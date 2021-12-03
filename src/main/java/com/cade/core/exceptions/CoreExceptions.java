@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import lombok.Getter;
 
 import javax.ws.rs.core.Response;
+import java.util.function.Supplier;
 
 @Getter
 @JsonIncludeProperties({

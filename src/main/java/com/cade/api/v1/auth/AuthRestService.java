@@ -4,5 +4,6 @@ import com.cade.api.v1.user.ResponseUserDTO;
 import io.smallrye.mutiny.Uni;
 
 public interface AuthRestService {
-    Uni<ResponseUserDTO> signUp(SignUpDTO signUp);
+    Uni<ResponseUserDTO> register(RegisterDTO registerDTO);
+    Uni<ResponseUserDTO> signIn(RegisterDTO registerDTO);
 }
