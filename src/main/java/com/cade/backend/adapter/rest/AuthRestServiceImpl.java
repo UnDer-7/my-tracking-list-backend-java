@@ -1,7 +1,7 @@
 package com.cade.backend.adapter.rest;
 
 import com.cade.api.v1.auth.AuthRestService;
-import com.cade.api.v1.auth.RegisterDTO;
+import com.cade.api.v1.auth.RequestRegisterDTO;
 import com.cade.api.v1.user.ResponseUserDTO;
 import com.cade.backend.adapter.mapper.AuthMapper;
 import com.cade.core.ports.driver.AuthService;
@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -31,18 +30,18 @@ public class AuthRestServiceImpl implements AuthRestService {
     @POST
     @Override
     @Path("/register")
-    public Uni<ResponseUserDTO> register(final RegisterDTO registerDTO) {
+    public Uni<ResponseUserDTO> register(final RequestRegisterDTO requestRegisterDTO) {
         return authService
-            .register(registerDTO.getToken())
+            .register(requestRegisterDTO.getToken())
             .map(authMapper::toResponseUserDTO);
     }
 
     @POST
     @Override
     @Path("/sign-in")
-    public Uni<ResponseUserDTO> signIn(final RegisterDTO registerDTO) {
+    public Uni<ResponseUserDTO> signIn(final RequestRegisterDTO requestRegisterDTO) {
         return authService
-            .signIn(registerDTO.getToken())
+            .signIn(requestRegisterDTO.getToken())
             .map(authMapper::toResponseUserDTO);
     }
 }
