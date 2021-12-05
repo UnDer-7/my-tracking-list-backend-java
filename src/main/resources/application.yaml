@@ -1,0 +1,16 @@
+quarkus:
+    mongodb:
+        connection-string: ${MY_TRACKING_LIST_BACKEND_DATABASE_URL}
+        database: ${MY_TRACKING_LIST_BACKEND_DATABASE_NAME}
+    swagger-ui:
+        always-include: true
+    http:
+        port: ${PORT}
+        auth:
+            basic: true
+    log:
+        level: INFO
+    rest-client:
+        the-movie-db-client:
+            url: ${MY_TRACKING_LIST_BACKEND_THE_MOVIE_DB_URL}
+            scope: javax.inject.Singleton
