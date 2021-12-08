@@ -6,7 +6,12 @@ import javax.ws.rs.core.Response;
 
 @Slf4j
 public class UnauthorizedException extends CoreException {
-    public UnauthorizedException() {
-        super(ErrorMessages.INVALID_TOKEN, Response.Status.UNAUTHORIZED);
+    public UnauthorizedException(final ErrorMessages message) {
+        super(message, Response.Status.UNAUTHORIZED);
+    }
+
+    @Override
+    public void logErr() {
+        log.warn("An UnauthorizedException just occurred\tErrorMessage: {}", getErrorMessage().name());
     }
 }

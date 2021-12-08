@@ -1,9 +1,12 @@
 package com.cade.infrastructure.filters;
 
+import com.cade.exceptions.ErrorMessages;
 import com.cade.exceptions.UnauthorizedException;
-import com.cade.user.auth.Token;
-import com.cade.user.auth.TokenValidatorHandler;
+import com.cade.features.user.UserRepositoryJPA;
+import com.cade.features.user.auth.Token;
+import com.cade.features.user.auth.TokenValidatorHandler;
 import io.smallrye.mutiny.Uni;
+import io.smallrye.mutiny.unchecked.Unchecked;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jboss.resteasy.reactive.server.ServerRequestFilter;
@@ -20,30 +23,38 @@ import java.util.function.Predicate;
 
 /**
  * @see <a href="https://quarkus.io/guides/resteasy-reactive#request-or-response-filters">
- *     https://quarkus.io/guides/resteasy-reactive#request-or-response-filters
+ * https://quarkus.io/guides/resteasy-reactive#request-or-response-filters
  * </a>
  */
 @Slf4j
 @ApplicationScoped
-@RequiredArgsConstructor(onConstructor_={@Inject})
+@RequiredArgsConstructor(onConstructor_ = {@Inject})
 public class TokenFilter {
+
     private final TokenValidatorHandler tokenValidatorHandler;
+    private final UserRepositoryJPA userRepository;
 
     @ServerRequestFilter(preMatching = true)
     public Uni<Void> filter(ContainerRequestContext reqCtx) {
-         return Uni.createFrom()
+        return Uni.createFrom()
             .item(() -> getToken(reqCtx))
             .onItem()
             .ifNotNull()
             .transformToUni(token -> tokenValidatorHandler.decode(token)
-                    .onItem()
-                    .ifNull()
-                    .failWith(UnauthorizedException::new)
-                    .map(Token::getEmail)
-                    .flatMap(email -> {
+                .onItem()
+                .ifNull()
+                .failWith(new UnauthorizedException(ErrorMessages.INVALID_TOKEN))
+                .map(Token::getEmail)
+                .flatMap(email -> userRepository
+                    .userExists(email)
+                    .onItem().ifNull()
+                    .failWith(new UnauthorizedException(ErrorMessages.USER_NOT_REGISTERED))
+                    .flatMap(Unchecked.function(userExists -> {
+                        if (Boolean.FALSE.equals(userExists)) throw new UnauthorizedException(ErrorMessages.USER_NOT_REGISTERED);
+
                         reqCtx.setSecurityContext(getSecurityContext(email, reqCtx));
                         return Uni.createFrom().nullItem();
-                    }));
+                    }))));
     }
 
     private SecurityContext getSecurityContext(final String email, final ContainerRequestContext reqCtx) {
@@ -82,4 +93,5 @@ public class TokenFilter {
             .filter(Predicate.not(String::isBlank))
             .orElse(null);
     }
+
 }

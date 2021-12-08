@@ -34,7 +34,7 @@ public enum ErrorMessages {
     USER_NOT_REGISTERED(
         "000005",
         "You are not registered yet",
-        "Before trying to sign in, you have to to register"
+        "you have to to register before using the API"
     );
 
     private final String errCode;

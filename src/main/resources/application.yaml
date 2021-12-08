@@ -10,7 +10,7 @@ quarkus:
             basic: true
     log:
         level: INFO
-    rest-client:
-        the-movie-db-client:
-            url: ${MY_TRACKING_LIST_BACKEND_THE_MOVIE_DB_URL}
-            scope: javax.inject.Singleton
+#    rest-client:
+#        the-movie-db-client:
+#            url: ${MY_TRACKING_LIST_BACKEND_THE_MOVIE_DB_URL}
+#            scope: javax.inject.Singleton
