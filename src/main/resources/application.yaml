@@ -13,7 +13,13 @@ quarkus:
             origins: '*'
     log:
         level: INFO
-#    rest-client:
-#        the-movie-db-client:
-#            url: ${MY_TRACKING_LIST_BACKEND_THE_MOVIE_DB_URL}
-#            scope: javax.inject.Singleton
+    oidc:
+        client-id: backend-service
+        credentials:
+            secret: secret
+        tls:
+            verification: none
+        auth-server-url: "https://localhost:8543/auth/realms/quarkus"
+    keycloak:
+        policy-enforcer:
+            enable: true

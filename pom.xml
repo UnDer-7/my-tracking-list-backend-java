@@ -31,11 +31,24 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+<!-- ##### SECURITY #####-->
     <dependency>
-      <groupId>com.google.api-client</groupId>
-      <artifactId>google-api-client</artifactId>
-      <version>1.32.1</version>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-oidc</artifactId>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-keycloak-authorization</artifactId>
+    </dependency>
+    <!--    <dependency>-->
+<!--      <groupId>com.google.api-client</groupId>-->
+<!--      <artifactId>google-api-client</artifactId>-->
+<!--      <version>1.32.1</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>io.quarkus</groupId>-->
+<!--      <artifactId>quarkus-security</artifactId>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>io.smallrye.reactive</groupId>
@@ -48,10 +61,6 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-context-propagation</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-security</artifactId>
     </dependency>
     <dependency>
       <groupId>org.mapstruct</groupId>

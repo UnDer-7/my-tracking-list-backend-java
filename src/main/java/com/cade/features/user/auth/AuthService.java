@@ -21,28 +21,30 @@ public class AuthService {
 
     private final SecurityContext securityContext;
     private final UserRepositoryJPA repository;
-    private final TokenValidatorHandler tokenHandler;
+//    private final TokenValidatorHandler tokenHandler;
 
     public Uni<User> register(final String token) {
-        return tokenHandler.decode(token)
-            .onItem()
-            .ifNull()
-            .failWith(new BusinessException(ErrorMessages.INVALID_TOKEN))
-            .flatMap(tokenDecoded -> repository.userExists(tokenDecoded.getEmail())
-                .map(buildUserFromToken(tokenDecoded)))
-            .flatMap(repository::save);
+        return Uni.createFrom().nullItem();
+//        return tokenHandler.decode(token)
+//            .onItem()
+//            .ifNull()
+//            .failWith(new BusinessException(ErrorMessages.INVALID_TOKEN))
+//            .flatMap(tokenDecoded -> repository.userExists(tokenDecoded.getEmail())
+//                .map(buildUserFromToken(tokenDecoded)))
+//            .flatMap(repository::save);
     }
 
     public Uni<User> signIn(final String token) {
-        return tokenHandler.decode(token)
-            .onItem()
-            .ifNull()
-            .failWith(new BusinessException(ErrorMessages.INVALID_TOKEN))
-            .map(Token::getEmail)
-            .flatMap(repository::findByEmail)
-            .onItem()
-            .ifNull()
-            .failWith(new BusinessException(ErrorMessages.USER_NOT_REGISTERED));
+        return Uni.createFrom().nullItem();
+//        return tokenHandler.decode(token)
+//            .onItem()
+//            .ifNull()
+//            .failWith(new BusinessException(ErrorMessages.INVALID_TOKEN))
+//            .map(Token::getEmail)
+//            .flatMap(repository::findByEmail)
+//            .onItem()
+//            .ifNull()
+//            .failWith(new BusinessException(ErrorMessages.USER_NOT_REGISTERED));
     }
 
     public Uni<User> getCurrentUser() {

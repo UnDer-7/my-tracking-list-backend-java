@@ -1,9 +1,11 @@
 package com.cade.features.user.auth;
 
 import com.cade.features.user.ResponseUserDTO;
+import io.quarkus.security.Authenticated;
 import io.smallrye.mutiny.Uni;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jboss.resteasy.reactive.NoCache;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -25,18 +27,16 @@ public class AuthResource {
     private final AuthMapper authMapper;
 
     @POST
+    @NoCache
     @Path("/register")
-    public Uni<ResponseUserDTO> register(@Valid final RequestRegisterDTO requestRegisterDTO) {
-        return authService
-            .register(requestRegisterDTO.getToken())
-            .map(authMapper::toResponseUserDTO);
+    public Uni<ResponseUserDTO> register() {
+        return Uni.createFrom().item(ResponseUserDTO.builder().email("register").build());
     }
 
     @POST
+    @Authenticated
     @Path("/sign-in")
-    public Uni<ResponseUserDTO> signIn(@Valid final RequestRegisterDTO requestRegisterDTO) {
-        return authService
-            .signIn(requestRegisterDTO.getToken())
-            .map(authMapper::toResponseUserDTO);
+    public Uni<ResponseUserDTO> signIn() {
+        return Uni.createFrom().item(ResponseUserDTO.builder().email("signIn").build());
     }
 }
