@@ -2,15 +2,12 @@ package com.cade.backend.adapter.mapper;
 
 import com.cade.api.dto.UserDTO;
 import com.cade.core.domain.UserDomain;
+import com.cade.core.utils.Constants;
+import org.mapstruct.Mapper;
 
-import javax.enterprise.context.ApplicationScoped;
+@Mapper(componentModel = Constants.MAPPER_COMPONENT_MODEL)
+public interface UserMapper {
 
-@ApplicationScoped
-public class UserMapper {
-    public UserDTO toDTO(UserDomain domain) {
-        var dto = new UserDTO();
-        dto.setEmail(domain.email);
+    UserDTO toDTO(UserDomain domain);
 
-        return dto;
-    }
 }
