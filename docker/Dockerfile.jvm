@@ -3,7 +3,7 @@
 #
 # Before building the container image run:
 #
-# ./mvnw package
+# ./mvnw package -Dquarkus.package.type=uber-jar
 #
 # Then, build the image with:
 #
@@ -75,20 +75,19 @@
 #   accessed directly. (example: "foo.example.com,bar.example.com")
 #
 ###
-FROM registry.access.redhat.com/ubi8/openjdk-11:1.11
+FROM registry.access.redhat.com/ubi8/openjdk-17:1.11
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
 
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
-COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
-COPY --chown=185 target/quarkus-app/*.jar /deployments/
-COPY --chown=185 target/quarkus-app/app/ /deployments/app/
-COPY --chown=185 target/quarkus-app/quarkus/ /deployments/quarkus/
+#COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
+#COPY --chown=185 target/quarkus-app/*.jar /deployments/
+#COPY --chown=185 target/quarkus-app/app/ /deployments/app/
+COPY --chown=185 backend/target/backend-1.0.0-SNAPSHOT-runner.jar /deployments/quarkus/app.jar
 
 EXPOSE 8080
 USER 185
 ENV AB_JOLOKIA_OFF=""
 ENV JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
-ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
-
+ENV JAVA_APP_JAR="/deployments/quarkus/app.jar"
