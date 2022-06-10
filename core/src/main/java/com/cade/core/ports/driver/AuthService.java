@@ -1,0 +1,8 @@
+package com.cade.core.ports.driver;
+
+import com.cade.core.domain.TokenDomain;
+import io.smallrye.mutiny.Uni;
+
+public interface AuthService {
+    Uni<TokenDomain> signIn(final String authCode);
+}

@@ -1,0 +1,13 @@
+quarkus:
+    mongodb:
+        connection-string: mongodb://localhost:27017
+        database: my_tracking_list
+
+my-tracking-list:
+    oauth:
+        google:
+            server-url: ${MY_TRACKING_LIST_BACKEND_OAUTH_GOOGLE_SERVER_URL}
+            client-id: ${MY_TRACKING_LIST_BACKEND_OAUTH_GOOGLE_CLIENT_ID}
+            client-secret: ${MY_TRACKING_LIST_BACKEND_OAUTH_GOOGLE_CLIENT_SECRET}
+            redirect-uri: ${MY_TRACKING_LIST_BACKEND_OAUTH_GOOGLE_REDIRECT_URI}
+            grant-type: ${MY_TRACKING_LIST_BACKEND_OAUTH_GOOGLE_GRANT_TYPE}
