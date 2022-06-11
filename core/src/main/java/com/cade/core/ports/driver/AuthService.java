@@ -4,5 +4,6 @@ import com.cade.core.domain.TokenDomain;
 import io.smallrye.mutiny.Uni;
 
 public interface AuthService {
-    Uni<TokenDomain> signIn(final String authCode);
+    Uni<TokenDomain> signIn(String authCode);
+    Uni<TokenDomain> register(String authCode);
 }

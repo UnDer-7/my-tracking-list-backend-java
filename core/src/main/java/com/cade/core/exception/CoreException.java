@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 @Getter
 public abstract class CoreException extends RuntimeException {
@@ -20,14 +21,20 @@ public abstract class CoreException extends RuntimeException {
     private final String errUniqueIdentifier;
 
     protected CoreException(final ErrorMessages errorMessages, final StatusCode statusCode) {
-        this(errorMessages, statusCode, null);
+        super(errorMessages.getExceptionMessage());
+        this.errCode = errorMessages.getErrCode();
+        this.userMsg = errorMessages.getUserMsg();
+        this.customMsg = errorMessages.getCustomMsg();
+        this.statusCode = statusCode.code;
+        this.timestamp = LocalDateTime.now().atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_ZONED_DATE_TIME);
+        this.errUniqueIdentifier = UUID.randomUUID().toString();
     }
 
     protected CoreException(
         final ErrorMessages errorMessages,
         final StatusCode statusCode,
         final Throwable throwable) {
-        super(throwable);
+        super(errorMessages.getExceptionMessage(), throwable);
         this.errCode = errorMessages.getErrCode();
         this.userMsg = errorMessages.getUserMsg();
         this.customMsg = errorMessages.getCustomMsg();

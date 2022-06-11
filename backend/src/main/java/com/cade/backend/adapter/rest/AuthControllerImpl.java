@@ -26,12 +26,15 @@ public class AuthControllerImpl implements AuthController {
     private final TokenMapper tokenMapper;
 
     @POST
-    public Uni<UserDTO> save(UserDTO dto) {
-        return Uni.createFrom().nothing();
+    @Path("/google/register")
+    @Override
+    public Uni<TokenDTO> register(@RestHeader("Auth-code") final String authCode) {
+        return authService.register(authCode).map(tokenMapper::toDTO);
     }
 
     @POST
     @Path("/google/sign-in")
+    @Override
     public Uni<TokenDTO> signIn(@RestHeader("Auth-code") final String authCode) {
         return authService.signIn(authCode).map(tokenMapper::toDTO);
     }

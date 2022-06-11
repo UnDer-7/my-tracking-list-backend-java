@@ -1,7 +1,10 @@
 package com.cade.backend.adapter.jpa;
 
+import com.cade.core.domain.ErrorMessages;
 import com.cade.core.domain.entity.UserEntity;
+import com.cade.core.exception.InternalServerErrorException;
 import com.cade.core.ports.driven.UserRepository;
+import com.cade.core.utils.Assert;
 import com.mongodb.client.model.CountOptions;
 import io.quarkus.mongodb.panache.reactive.ReactivePanacheMongoRepository;
 import io.smallrye.mutiny.Uni;
@@ -14,6 +17,11 @@ class UserRepositoryJpa implements UserRepository, ReactivePanacheMongoRepositor
 
     @Override
     public Uni<UserEntity> save(final UserEntity domain) {
+        Assert.thatIsNull(domain.getId(),
+            new InternalServerErrorException(
+                ErrorMessages.SAVING_ENTITY_CANNOT_HAVE_AN_ID.setCustomMsg("Trying to save entity with ID=[%s]".formatted(domain.getId()))
+            ));
+
         return this.persist(domain);
     }
 
