@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 public class AppLifecycle {
 
     void onStartup(@Observes StartupEvent event) {
-       validateErrorMessages();
-       validateIfHasErrorMessagesWithoutUserMsg();
+        validateErrorMessages();
+        validateIfHasErrorMessagesWithoutUserMsg();
     }
 
     void validateErrorMessages() {
@@ -48,4 +48,5 @@ public class AppLifecycle {
             log.error("There is ErrorMessages Enum with blank or null userMsg. Invalid ErrorMessages=[{}]", messagesWithoutUserMsg);
         }
     }
+
 }

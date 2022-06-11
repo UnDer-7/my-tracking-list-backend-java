@@ -11,6 +11,7 @@ import java.time.ZoneId;
 
 @Mapper(componentModel = Constants.MAPPER_COMPONENT_MODEL)
 public interface TokenMapper {
+
     TokenDTO toDTO(TokenDomain source);
 
     default TokenDomain toDomain(final GoogleIdToken googleToken, final String refreshTokenEncoded, final String tokenEncoded) {
@@ -40,4 +41,5 @@ public interface TokenMapper {
             .tokenEncoded(tokenEncoded)
             .build();
     }
+
 }

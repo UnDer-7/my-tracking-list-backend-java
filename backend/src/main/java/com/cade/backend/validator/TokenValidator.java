@@ -1,6 +1,5 @@
 package com.cade.backend.validator;
 
-import com.cade.backend.config.ServerConfig;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import io.smallrye.mutiny.Uni;
@@ -18,6 +17,7 @@ import java.util.function.Supplier;
 @ApplicationScoped
 @RequiredArgsConstructor
 public class TokenValidator {
+
     private final GoogleIdTokenVerifier googleIdTokenVerifier;
 
     // todo: Cache
@@ -43,4 +43,5 @@ public class TokenValidator {
             .item(execute)
             .runSubscriptionOn(Infrastructure.getDefaultWorkerPool());
     }
+
 }

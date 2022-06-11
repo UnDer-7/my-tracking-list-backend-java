@@ -13,6 +13,7 @@ import javax.ws.rs.ext.Provider;
 @Provider
 @RequiredArgsConstructor
 public class CoreExceptionFilter implements ExceptionMapper<CoreException> {
+
     private final CoreExceptionMapper coreExceptionMapper;
 
     @Override

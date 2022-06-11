@@ -6,7 +6,6 @@ import com.cade.core.exception.InternalServerErrorException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.smallrye.mutiny.Uni;
-import io.smallrye.mutiny.unchecked.Unchecked;
 import io.vertx.mutiny.core.Vertx;
 import io.vertx.mutiny.ext.web.client.WebClient;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +18,7 @@ import javax.ws.rs.core.HttpHeaders;
 @Slf4j
 @ApplicationScoped
 public class OAuthGoogleClient {
+
     private final WebClient client;
     private final ObjectMapper objectMapper;
     private final ServerConfig.Oauth.OauthSetting googleSetting;
@@ -78,4 +78,5 @@ public class OAuthGoogleClient {
             );
         }
     }
+
 }

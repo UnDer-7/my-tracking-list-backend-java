@@ -12,7 +12,7 @@ import javax.ws.rs.core.Application;
 
 @OpenAPIDefinition(
     info = @Info(
-        title="My Tracking List API",
+        title = "My Tracking List API",
         version = "1.0.0-SNAPSHOT",
         contact = @Contact(
             name = "Mateus Gomes",
@@ -23,8 +23,10 @@ import javax.ws.rs.core.Application;
 @Slf4j
 @QuarkusMain
 public class App extends Application {
-    public static void main(String ... args) {
+
+    public static void main(String... args) {
         log.info("Running main method");
         Quarkus.run(args);
     }
+
 }

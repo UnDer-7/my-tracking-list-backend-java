@@ -21,6 +21,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class AuthControllerImpl implements AuthController {
+
     private final AuthService authService;
     private final TokenMapper tokenMapper;
 
@@ -34,7 +35,7 @@ public class AuthControllerImpl implements AuthController {
     @POST
     @Path("/google/refresh")
     @Override
-    public Uni<TokenDTO> refreshToken(@RestHeader("Refresh-token")final String refreshToken) {
+    public Uni<TokenDTO> refreshToken(@RestHeader("Refresh-token") final String refreshToken) {
         return authService.refreshToken(refreshToken).map(tokenMapper::toDTO);
     }
 

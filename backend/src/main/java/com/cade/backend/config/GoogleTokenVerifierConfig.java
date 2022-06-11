@@ -14,6 +14,7 @@ import java.util.Collections;
 @ApplicationScoped
 @RequiredArgsConstructor
 public class GoogleTokenVerifierConfig {
+
     private final ServerConfig serverConfig;
 
     @Produces
@@ -23,4 +24,5 @@ public class GoogleTokenVerifierConfig {
             .setAudience(Collections.singletonList(serverConfig.oauth().google().clientId()))
             .build();
     }
+
 }

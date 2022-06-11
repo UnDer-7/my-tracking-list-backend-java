@@ -7,5 +7,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = Constants.MAPPER_COMPONENT_MODEL)
 public interface CoreExceptionMapper {
+
     CoreExceptionDTO toDTO(CoreException source);
+
 }
