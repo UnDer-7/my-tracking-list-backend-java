@@ -17,6 +17,10 @@ public class InternalServerErrorException extends CoreException {
         super(errorMessages, StatusCode.INTERNAL_SERVER_ERROR, throwable);
     }
 
+    public static Supplier<CoreException> exceptionSupplier(final ErrorMessages errorMessages) {
+        return () -> new InternalServerErrorException(errorMessages);
+    }
+
     @Override
     protected LogLevel getLogLevel() {
         return LogLevel.ERROR;
@@ -27,7 +31,4 @@ public class InternalServerErrorException extends CoreException {
         return log;
     }
 
-    public static Supplier<CoreException> exceptionSupplier(final ErrorMessages errorMessages) {
-        return () -> new InternalServerErrorException(errorMessages);
-    }
 }

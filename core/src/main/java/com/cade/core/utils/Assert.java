@@ -7,6 +7,7 @@ import java.util.Objects;
 
 @UtilityClass
 public class Assert {
+
     public <T extends CoreException> void thatIsTrue(final Boolean value, final T exception) {
         thatIsNotNull(value, exception);
         if (Boolean.FALSE.equals(value)) throw exception;

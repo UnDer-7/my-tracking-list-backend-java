@@ -4,6 +4,9 @@ import com.cade.core.domain.entity.UserEntity;
 import io.smallrye.mutiny.Uni;
 
 public interface UserService {
+
     Uni<UserEntity> save(UserEntity domain);
+
     Uni<Boolean> userExists(final String email);
+
 }

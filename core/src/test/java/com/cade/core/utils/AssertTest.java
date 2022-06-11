@@ -40,6 +40,7 @@ class AssertTest {
     @Nested
     @DisplayName("Tests for method thatIsFalse")
     class ThatIsFalse {
+
         @Test
         void thatIsFalse_should_not_fail() {
             assertThatCode(() -> Assert.thatIsFalse(false, new InternalServerErrorException(ErrorMessages.UNEXPECTED_ERROR)))
@@ -56,11 +57,13 @@ class AssertTest {
                 .isThrownBy(() -> Assert.thatIsFalse(value, expectedException))
                 .withMessage(ErrorMessages.UNEXPECTED_ERROR.getExceptionMessage());
         }
+
     }
 
     @Nested
     @DisplayName("Tests for method thatIsNull")
     class ThatIsNull {
+
         @Test
         void thatIsNull_should_not_fail() {
             assertThatCode(() -> Assert.thatIsNull(null, new InternalServerErrorException(ErrorMessages.UNEXPECTED_ERROR)))
@@ -75,11 +78,13 @@ class AssertTest {
                 .isThrownBy(() -> Assert.thatIsNull("mock", expectedException))
                 .withMessage(ErrorMessages.UNEXPECTED_ERROR.getExceptionMessage());
         }
+
     }
 
     @Nested
     @DisplayName("Tests for method thatIsNotNull")
     class ThatIsNotNull {
+
         @Test
         void thatIsNotNull_should_not_fail() {
             assertThatCode(() -> Assert.thatIsNotNull("abc", new InternalServerErrorException(ErrorMessages.UNEXPECTED_ERROR)))
@@ -94,5 +99,7 @@ class AssertTest {
                 .isThrownBy(() -> Assert.thatIsNotNull(null, expectedException))
                 .withMessage(ErrorMessages.UNEXPECTED_ERROR.getExceptionMessage());
         }
+
     }
+
 }

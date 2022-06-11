@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @ToString
 public class TokenDomain {
+
     private String email;
     private boolean isEmailVerified;
     private LocalDateTime expirationTime;
@@ -24,4 +25,5 @@ public class TokenDomain {
     private String locale;
     private String refreshTokenEncoded;
     private String tokenEncoded;
+
 }

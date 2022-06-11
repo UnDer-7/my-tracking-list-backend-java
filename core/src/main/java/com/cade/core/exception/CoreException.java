@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 @Getter
 public abstract class CoreException extends RuntimeException {
+
     private final String errCode;
     private final String userMsg;
     private final String customMsg;

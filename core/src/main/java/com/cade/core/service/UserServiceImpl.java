@@ -23,4 +23,5 @@ public class UserServiceImpl implements UserService {
     public Uni<Boolean> userExists(final String email) {
         return userRepository.userExists(email);
     }
+
 }
