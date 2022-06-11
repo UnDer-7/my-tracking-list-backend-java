@@ -72,9 +72,8 @@ public class OAuthGoogleClient {
             return objectMapper.readValue(json, clazz);
         } catch (JsonProcessingException e) {
             throw new InternalServerErrorException(
-                ErrorMessages.SERIALIZATION_ERROR
-                    .setCustomMsg("Class with problem: %s - JSON: %s"
-                        .formatted(clazz.getName(), json))
+                ErrorMessages.SERIALIZATION_ERROR.setCustomMsg("Class with problem: %s - JSON: %s".formatted(clazz.getName(), json)),
+                e
             );
         }
     }
