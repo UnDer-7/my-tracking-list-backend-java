@@ -7,4 +7,5 @@ public record TokenDTO(
     String tokenEncoded,
     String refreshTokenEncoded
 ) {
+
 }
