@@ -44,4 +44,9 @@ public class AuthServiceImpl implements AuthService {
             .flatMap(tkn -> userRepository.save(UserEntity.fromToken(tkn)).replaceWith(tkn));
     }
 
+    @Override
+    public Uni<TokenDomain> refreshToken(final String refreshToken) {
+        return tokenHandler.refreshToken(refreshToken);
+    }
+
 }

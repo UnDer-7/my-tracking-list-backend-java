@@ -14,7 +14,6 @@ public interface ServerConfig {
             String clientId();
             String clientSecret();
             String redirectUri();
-            String grantType();
         }
     }
 }

@@ -26,4 +26,11 @@ public class TokenHandlerImpl implements TokenHandler {
                 .map(idToken -> tokenMapper.toDomain(idToken, oauthResponse.refreshToken(), oauthResponse.idToken())));
     }
 
+    @Override
+    public Uni<TokenDomain> refreshToken(final String refreshToken) {
+        return oAuthGoogleClient.refreshToken(refreshToken)
+            .flatMap(oauthResponse -> tokenValidator.decodeToken(oauthResponse.idToken())
+                    .onItem().ifNull().failWith(new RuntimeException("Token Invalid")) // todo: arrumar exception
+                    .map(idToken -> tokenMapper.toDomain(idToken, refreshToken, oauthResponse.idToken())));
+    }
 }

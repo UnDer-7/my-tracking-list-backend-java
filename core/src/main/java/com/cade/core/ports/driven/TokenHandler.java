@@ -5,4 +5,5 @@ import io.smallrye.mutiny.Uni;
 
 public interface TokenHandler {
     Uni<TokenDomain> getToken(String authCode);
+    Uni<TokenDomain> refreshToken(final String refreshToken);
 }

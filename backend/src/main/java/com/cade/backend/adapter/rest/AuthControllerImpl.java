@@ -2,7 +2,6 @@ package com.cade.backend.adapter.rest;
 
 import com.cade.api.controller.AuthController;
 import com.cade.api.dto.TokenDTO;
-import com.cade.api.dto.UserDTO;
 import com.cade.backend.adapter.mapper.TokenMapper;
 import com.cade.core.ports.driver.AuthService;
 import io.smallrye.mutiny.Uni;
@@ -30,6 +29,13 @@ public class AuthControllerImpl implements AuthController {
     @Override
     public Uni<TokenDTO> register(@RestHeader("Auth-code") final String authCode) {
         return authService.register(authCode).map(tokenMapper::toDTO);
+    }
+
+    @POST
+    @Path("/google/refresh")
+    @Override
+    public Uni<TokenDTO> refreshToken(@RestHeader("Refresh-token")final String refreshToken) {
+        return authService.refreshToken(refreshToken).map(tokenMapper::toDTO);
     }
 
     @POST

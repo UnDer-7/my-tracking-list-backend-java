@@ -6,4 +6,5 @@ import io.smallrye.mutiny.Uni;
 public interface AuthService {
     Uni<TokenDomain> signIn(String authCode);
     Uni<TokenDomain> register(String authCode);
+    Uni<TokenDomain> refreshToken(String refreshToken);
 }

@@ -32,6 +32,10 @@ public enum ErrorMessages {
     SAVING_ENTITY_CANNOT_HAVE_AN_ID(
         "005",
         "Entity cannot have an ID when saving"
+    ),
+    SERIALIZATION_ERROR(
+        "006",
+        "Error while deserializing class"
     );
 
     private final String errCode;
