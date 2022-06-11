@@ -36,6 +36,10 @@ public enum ErrorMessages {
     SERIALIZATION_ERROR(
         "006",
         "Error while deserializing class"
+    ),
+    USER_NOT_FOUND(
+        "007",
+        "User was not found"
     );
 
     private final String errCode;

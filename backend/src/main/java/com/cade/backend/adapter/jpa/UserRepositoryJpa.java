@@ -32,4 +32,11 @@ class UserRepositoryJpa implements UserRepository, ReactivePanacheMongoRepositor
             .map(quantity -> quantity == 1);
     }
 
+    @Override
+    public Uni<UserEntity> findByEmail(final String email) {
+
+        return this.find("email", email).singleResultOptional()
+            .map(opt -> opt.orElse(null));
+    }
+
 }

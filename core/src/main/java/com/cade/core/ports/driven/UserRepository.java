@@ -9,4 +9,5 @@ public interface UserRepository {
 
     Uni<Boolean> userExists(String email);
 
+    Uni<UserEntity> findByEmail(String email);
 }

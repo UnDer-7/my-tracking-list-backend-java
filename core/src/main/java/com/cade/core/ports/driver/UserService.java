@@ -5,8 +5,5 @@ import io.smallrye.mutiny.Uni;
 
 public interface UserService {
 
-    Uni<UserEntity> save(UserEntity domain);
-
-    Uni<Boolean> userExists(final String email);
-
+    Uni<UserEntity> getUserByEmail(String email);
 }
