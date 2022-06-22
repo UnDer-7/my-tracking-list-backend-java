@@ -19,7 +19,7 @@ import javax.ws.rs.core.SecurityContext;
 
 @Slf4j
 @Authenticated
-@Path("/user")
+@Path("/users")
 @ApplicationScoped
 @RequiredArgsConstructor
 @Produces(MediaType.APPLICATION_JSON)

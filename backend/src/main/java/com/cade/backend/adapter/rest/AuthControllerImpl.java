@@ -26,6 +26,13 @@ public class AuthControllerImpl implements AuthController {
     private final TokenMapper tokenMapper;
 
     @POST
+    @Path("/google/sign-in")
+    @Override
+    public Uni<TokenDTO> signIn(@RestHeader("Auth-code") final String authCode) {
+        return authService.signIn(authCode).map(tokenMapper::toDTO);
+    }
+
+    @POST
     @Path("/google/register")
     @Override
     public Uni<TokenDTO> register(@RestHeader("Auth-code") final String authCode) {
@@ -37,13 +44,6 @@ public class AuthControllerImpl implements AuthController {
     @Override
     public Uni<TokenDTO> refreshToken(@RestHeader("Refresh-token") final String refreshToken) {
         return authService.refreshToken(refreshToken).map(tokenMapper::toDTO);
-    }
-
-    @POST
-    @Path("/google/sign-in")
-    @Override
-    public Uni<TokenDTO> signIn(@RestHeader("Auth-code") final String authCode) {
-        return authService.signIn(authCode).map(tokenMapper::toDTO);
     }
 
 }
