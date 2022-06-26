@@ -22,6 +22,7 @@ class UserRepositoryJpa implements UserRepository, ReactivePanacheMongoRepositor
                 ErrorMessages.SAVING_ENTITY_CANNOT_HAVE_AN_ID.setCustomMsg("Trying to save entity with ID=[%s]".formatted(domain.getId()))
             ));
 
+        domain.beforeSave();
         return this.persist(domain);
     }
 

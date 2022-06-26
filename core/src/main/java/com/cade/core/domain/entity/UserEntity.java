@@ -10,6 +10,8 @@ import lombok.Setter;
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Builder
@@ -25,6 +27,19 @@ public class UserEntity {
     private String email;
     private String name;
     private String locale;
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
+
+    public void beforeSave() {
+        final var currentTime = LocalDateTime.now();
+
+        createdAt = currentTime;
+        modifiedAt = currentTime;
+    }
+
+    public void beforeUpdate() {
+        modifiedAt = LocalDateTime.now();
+    }
 
     public static UserEntity fromToken(final TokenDomain token) {
         final var usr = new UserEntity();
