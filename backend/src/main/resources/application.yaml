@@ -15,3 +15,7 @@ my-tracking-list:
             client-id: ${MY_TRACKING_LIST_BACKEND_OAUTH_GOOGLE_CLIENT_ID}
             client-secret: ${MY_TRACKING_LIST_BACKEND_OAUTH_GOOGLE_CLIENT_SECRET}
             redirect-uri: ${MY_TRACKING_LIST_BACKEND_OAUTH_GOOGLE_REDIRECT_URI}
+    clients:
+        themoviedb:
+            server-url: ${MY_TRACKING_LIST_BACKEND_THE_MOVIE_DB_URL}
+            api-key: ${MY_TRACKING_LIST_BACKEND_THE_MOVIE_DB_API_KEY}

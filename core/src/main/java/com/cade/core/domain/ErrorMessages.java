@@ -40,6 +40,10 @@ public enum ErrorMessages {
     USER_NOT_FOUND(
         "007",
         "User was not found"
+    ),
+    SEARCH_CONTENT_STRATEGY_NOT_FOUND(
+        "008",
+        "SearchContentStrategy was not found"
     );
 
     private final String errCode;
