@@ -2,19 +2,24 @@ package com.cade.core.strategy.searchcontent;
 
 import com.cade.core.domain.Content;
 import com.cade.core.domain.ContentType;
-import io.smallrye.mutiny.Multi;
+import com.cade.core.domain.Page;
+import com.cade.core.ports.driven.TVGateway;
+import io.smallrye.mutiny.Uni;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.time.LocalDate;
 
+@Slf4j
 @ApplicationScoped
 @RequiredArgsConstructor
 public class SearchContentTVStrategy implements SearchContentStrategy {
 
+    private final TVGateway tvGateway;
+
     @Override
-    public Multi<Content> execute(final String searchString) {
-        return Multi.createFrom().item(Content.builder().titleName("Sopranos | %s".formatted(searchString)).releasedDate(LocalDate.now().minusYears(20)).build());
+    public Uni<Page<Content>> execute(Integer page, String searchString) {
+        return tvGateway.search(page, searchString);
     }
 
     @Override

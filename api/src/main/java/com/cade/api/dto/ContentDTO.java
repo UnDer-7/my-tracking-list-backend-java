@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,6 +15,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContentDTO {
-    private String titleName;
-    private LocalDate releasedDate;
+    private Integer id;
+    private LocalDate releaseDate;
+    private String overview;
+    private String originalLanguage;
+    private String posterPath;
+    private List<String> originCountry;
+    private String backdropPath;
+    private String originalTitle;
+    private String title;
 }

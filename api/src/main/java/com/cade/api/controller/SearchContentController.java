@@ -2,8 +2,9 @@ package com.cade.api.controller;
 
 import com.cade.api.dto.ContentDTO;
 import com.cade.api.dto.ContentTypeDTO;
-import io.smallrye.mutiny.Multi;
+import com.cade.api.dto.PageDTO;
+import io.smallrye.mutiny.Uni;
 
 public interface SearchContentController {
-    Multi<ContentDTO> searchByType(ContentTypeDTO contentType, String searchArgs);
+    Uni<PageDTO<ContentDTO>> searchByType(ContentTypeDTO contentType, String searchArgs, final Integer page);
 }

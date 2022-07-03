@@ -1,6 +1,6 @@
 package com.cade.backend.handler;
 
-import com.cade.backend.adapter.clients.google.OAuthGoogleClient;
+import com.cade.backend.clients.google.OAuthGoogleClient;
 import com.cade.backend.adapter.mapper.TokenMapper;
 import com.cade.backend.validator.TokenValidator;
 import com.cade.core.domain.TokenDomain;

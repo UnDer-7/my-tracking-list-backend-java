@@ -26,4 +26,8 @@ public class Assert {
         if (Objects.isNull(value)) throw exception;
     }
 
+    public <T extends CoreException> void thatStatusCodeIsSuccess(final Integer statusCode, final T exception) {
+        thatIsNotNull(statusCode, exception);
+        if (statusCode < 200 || statusCode > 299) throw exception;
+    }
 }

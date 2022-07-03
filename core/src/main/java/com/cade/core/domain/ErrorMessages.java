@@ -44,6 +44,11 @@ public enum ErrorMessages {
     SEARCH_CONTENT_STRATEGY_NOT_FOUND(
         "008",
         "SearchContentStrategy was not found"
+    ),
+    ERROR_WHILE_COMMUNICATING_WITH_CLIENT(
+        "009",
+//        "Error while getting access token from google"
+        "Error while communicating with client"
     );
 
     private final String errCode;

@@ -4,10 +4,18 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Builder
 public class Content {
-    private String titleName;
-    private LocalDate releasedDate;
+    private Integer id;
+    private LocalDate releaseDate;
+    private String overview;
+    private String originalLanguage;
+    private String posterPath;
+    private List<String> originCountry;
+    private String backdropPath;
+    private String originalTitle;
+    private String title;
 }

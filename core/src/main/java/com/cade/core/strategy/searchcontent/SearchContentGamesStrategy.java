@@ -2,7 +2,9 @@ package com.cade.core.strategy.searchcontent;
 
 import com.cade.core.domain.Content;
 import com.cade.core.domain.ContentType;
+import com.cade.core.domain.Page;
 import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.Uni;
 import lombok.RequiredArgsConstructor;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -13,8 +15,8 @@ import java.time.LocalDate;
 public class SearchContentGamesStrategy implements SearchContentStrategy {
 
     @Override
-    public Multi<Content> execute(final String searchString) {
-        return Multi.createFrom().item(Content.builder().titleName("Yakuza 2 | %s".formatted(searchString)).releasedDate(LocalDate.now().minusYears(10)).build());
+    public Uni<Page<Content>> execute(Integer page, String searchString) {
+        return Uni.createFrom().nullItem();
     }
 
     @Override

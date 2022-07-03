@@ -102,4 +102,28 @@ class AssertTest {
 
     }
 
+    @Nested
+    @DisplayName("Tests for method thatStatusCodeIsSuccess")
+    class ThatStatusCodeIsSuccess {
+
+        @ParameterizedTest
+        @ValueSource(ints = { 200, 201, 203, 204, 205, 206, 299 })
+        void thatStatusCodeIsSuccess_should_not_fail(final int statusCodes) {
+            assertThatCode(() -> Assert.thatStatusCodeIsSuccess(statusCodes, new InternalServerErrorException(ErrorMessages.UNEXPECTED_ERROR)))
+                .doesNotThrowAnyException();
+        }
+
+        @NullSource
+        @ParameterizedTest
+        @ValueSource(ints = { 100, 101, 103, 199, 300, 301, 302, 400, 401, 405, 422, 500, 501, 503, 504 })
+        void thatIsNotNull_should_fail(final Integer statusCode) {
+            final var expectedException = new InternalServerErrorException(ErrorMessages.UNEXPECTED_ERROR);
+
+            assertThatExceptionOfType(expectedException.getClass())
+                .isThrownBy(() -> Assert.thatStatusCodeIsSuccess(statusCode, expectedException))
+                .withMessage(ErrorMessages.UNEXPECTED_ERROR.getExceptionMessage());
+        }
+
+    }
+
 }

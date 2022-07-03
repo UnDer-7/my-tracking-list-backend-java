@@ -3,11 +3,13 @@ package com.cade.backend.adapter.rest;
 import com.cade.api.controller.SearchContentController;
 import com.cade.api.dto.ContentDTO;
 import com.cade.api.dto.ContentTypeDTO;
+import com.cade.api.dto.PageDTO;
 import com.cade.backend.adapter.mapper.ContentMapper;
 import com.cade.backend.adapter.mapper.ContentTypeMapper;
 import com.cade.core.ports.driver.SearchContentService;
 import io.quarkus.security.Authenticated;
 import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.Uni;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +23,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Slf4j
-@Authenticated
+//@Authenticated
 @Path("/search-content")
 @ApplicationScoped
 @RequiredArgsConstructor
@@ -35,10 +37,14 @@ public class SearchContentControllerImpl implements SearchContentController {
     @GET
     @Override
     @Path("/{contentType}")
-    public Multi<ContentDTO> searchByType(@PathParam("contentType") final ContentTypeDTO contentTypeDTO, @QueryParam("search-args") final String searchArgs) {
+    public Uni<PageDTO<ContentDTO>> searchByType(
+        @PathParam("contentType") final ContentTypeDTO contentTypeDTO,
+        @QueryParam("search-args") final String searchArgs,
+        @QueryParam("page") final Integer page) {
+
         final var contentType = contentTypeMapper.toDomain(contentTypeDTO);
 
-        return searchContentService.searchByContent(contentType, searchArgs).map(contentMapper::toDTO);
+        return searchContentService.searchByContent(contentType, page, searchArgs).map(contentMapper::toDTO);
     }
 
 }
