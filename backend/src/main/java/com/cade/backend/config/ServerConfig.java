@@ -10,7 +10,11 @@ public interface ServerConfig {
     Client client();
 
     interface Client {
-        ClientSetting theMovieDb();
+        TheMovieDbClientSetting theMovieDb();
+
+        interface TheMovieDbClientSetting extends ClientSetting {
+            String imageUrl();
+        }
 
         interface ClientSetting {
             String serverUrl();
