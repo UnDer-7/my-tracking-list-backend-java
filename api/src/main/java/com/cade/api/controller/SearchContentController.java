@@ -6,5 +6,5 @@ import com.cade.api.dto.PageDTO;
 import io.smallrye.mutiny.Uni;
 
 public interface SearchContentController {
-    Uni<PageDTO<ContentDTO>> searchByType(ContentTypeDTO contentType, String searchArgs, final Integer page);
+    Uni<PageDTO<ContentDTO>> searchByType(String contentType, String searchArgs, final Integer page);
 }

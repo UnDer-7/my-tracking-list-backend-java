@@ -23,10 +23,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Slf4j
-//@Authenticated
-@Path("/search-content")
+@Authenticated
 @ApplicationScoped
 @RequiredArgsConstructor
+@Path("/search-content")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class SearchContentControllerImpl implements SearchContentController {
@@ -38,11 +38,11 @@ public class SearchContentControllerImpl implements SearchContentController {
     @Override
     @Path("/{contentType}")
     public Uni<PageDTO<ContentDTO>> searchByType(
-        @PathParam("contentType") final ContentTypeDTO contentTypeDTO,
+        @PathParam("contentType") final String contentTypeDTO,
         @QueryParam("search-args") final String searchArgs,
         @QueryParam("page") final Integer page) {
 
-        final var contentType = contentTypeMapper.toDomain(contentTypeDTO);
+        final var contentType = contentTypeMapper.toDomain(ContentTypeDTO.fromString(contentTypeDTO));
 
         return searchContentService.searchByContent(contentType, page, searchArgs).map(contentMapper::toDTO);
     }
