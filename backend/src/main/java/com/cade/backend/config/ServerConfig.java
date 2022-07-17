@@ -11,6 +11,7 @@ public interface ServerConfig {
 
     interface Client {
         TheMovieDbClientSetting theMovieDb();
+        ClientSetting rawg();
 
         interface TheMovieDbClientSetting extends ClientSetting {
             String imageUrl();
