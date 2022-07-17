@@ -10,7 +10,7 @@ import java.util.Objects;
 @Getter
 @Builder
 public class Content {
-    private Integer id;
+    private Long id;
     private LocalDate releaseDate;
     private String overview;
     private String originalLanguage;

@@ -1,6 +1,6 @@
 package com.cade.backend.adapter.gateway;
 
-import com.cade.backend.adapter.mapper.ContentMapper;
+import com.cade.backend.adapter.mapper.TheMovieDBMapper;
 import com.cade.backend.clients.themoviedb.TheMovieDBClient;
 import com.cade.backend.config.ServerConfig;
 import com.cade.core.domain.Content;
@@ -18,13 +18,13 @@ import javax.enterprise.context.ApplicationScoped;
 public class TVGatewayImpl implements TVGateway {
 
     private final TheMovieDBClient theMovieDBClient;
-    private final ContentMapper contentMapper;
+    private final TheMovieDBMapper mapper;
     private final ServerConfig serverConfig;
 
     @Override
     public Uni<Page<Content>> search(final Integer page, final String searchArgs) {
         return theMovieDBClient.searchTVShows(page, searchArgs)
-            .map(contentMapper::toDomain)
+            .map(mapper::toDomain)
             .map(contentPage -> {
                 contentPage.getResults()
                     .forEach(content -> {

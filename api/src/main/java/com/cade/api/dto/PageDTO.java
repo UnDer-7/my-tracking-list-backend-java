@@ -18,4 +18,5 @@ public class PageDTO<T> {
     private List<T> results;
     private Long totalResults;
     private Long totalPages;
+    private Boolean isTheLastPage;
 }
