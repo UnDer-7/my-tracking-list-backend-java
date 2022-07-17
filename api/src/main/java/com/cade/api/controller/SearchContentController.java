@@ -1,7 +1,6 @@
 package com.cade.api.controller;
 
 import com.cade.api.dto.ContentDTO;
-import com.cade.api.dto.ContentTypeDTO;
 import com.cade.api.dto.PageDTO;
 import io.smallrye.mutiny.Uni;
 
