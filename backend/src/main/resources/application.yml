@@ -1,0 +1,9 @@
+server:
+  port: ${MY_TRACKING_LIST_BACKEND_PORT}
+
+spring:
+  data:
+    mongodb:
+      host: ${MY_TRACKING_LIST_BACKEND_DATABASE_HOST}
+      port: ${MY_TRACKING_LIST_BACKEND_DATABASE_POST}
+      database: ${MY_TRACKING_LIST_BACKEND_DATABASE_NAME}
