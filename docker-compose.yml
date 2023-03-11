@@ -1,6 +1,7 @@
 version: '3.1'
 
 services:
+  # backend database
   mongo:
     image: mongo
     container_name: my_tracking_list-mongo
@@ -8,6 +9,47 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - .docker_volume/mongo:/data/db
+      - .docker_volume/db/mongo:/data/db
     environment:
       MONGO_INITDB_DATABASE: my_tracking_list
+    networks:
+      - my-tracking-list
+
+  # keycloak database
+  postgres:
+    image: postgres
+    container_name: my_tracking_list-postgres
+    volumes:
+      - ${HOME}/.docker_volume/postgress:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: admin123
+      POSTGRES_PASSWORD: 123admin
+    networks:
+      - my-tracking-list
+
+  keycloak:
+    image: jboss/keycloak:latest
+    container_name: my_tracking_list-keycloak
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak
+      DB_USER: admin123
+      DB_SCHEMA: public
+      DB_PASSWORD: 123admin
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      KC_HOSTNAME_PORT: 8080
+    ports:
+      - "8081:8080"
+      - "8543:8443"
+    depends_on:
+      - postgres
+    networks:
+      - my-tracking-list
+
+
+networks:
+  my-tracking-list:
+    driver: bridge
